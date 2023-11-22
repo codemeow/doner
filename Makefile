@@ -1,15 +1,15 @@
-PROGRAM_NAME = doner
-OUTPUT_NAME = $(PROGRAM_NAME).elf
+PROGRAM_NAME := doner
+OUTPUT_NAME  := $(PROGRAM_NAME).elf
 
-CC          = gcc
-RM          = rm
+CC           := gcc
+RM           := rm
 
-DIR_SRC     = code
+DIR_SRC      := code
 
-SRC         = $(DIR_SRC)/main.c
+SRC          := $(DIR_SRC)/main.c $(DIR_SRC)/args/dnr_args_process.c $(DIR_SRC)/easy/dnr_easy_process.c
 
-CFLAGS      = -Wall -Wextra -Werror -std=c99
-LDFLAGS     = 
+CFLAGS       := -Wall -Wextra -Werror -std=c99
+LDFLAGS      := 
 
 .PHONY: all clean
 

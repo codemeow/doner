@@ -19,19 +19,7 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "args/dnr_args_process.h"
-#include "easy/dnr_easy_process.h"
-
-/*! \brief Entry point
+/*! \brief Process input program arguments
  * \param[in] argc Number of arguments
- * \param[in] argv List of arguments
- * \return Program exit code */
-int main(int argc, char * argv[]) {
-    dnr_args_process(argc, argv);
-    dnr_easy_process();
-
-    return EXIT_SUCCESS;
-}
+ * \param[in] argv List of arguments */
+void dnr_args_process(int argc, char * argv[]);
