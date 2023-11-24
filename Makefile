@@ -1,22 +1,21 @@
 PROGRAM_NAME := doner
-OUTPUT_NAME  := $(PROGRAM_NAME).elf
 
 CC           := gcc
 RM           := rm
 
 DIR_SRC      := code
+SRC          := $(shell find $(DIR_SRC) -type f -name '*.c' | xargs echo)
 
-SRC          := $(DIR_SRC)/main.c $(DIR_SRC)/args/dnr_args_process.c $(DIR_SRC)/easy/dnr_easy_process.c
-
-CFLAGS       := -Wall -Wextra -Werror -std=c99
-LDFLAGS      := 
+CFLAGS       := -Wall -Wextra -Werror -std=c99 -O3
+DFLAGS       := -D _GNU_SOURCE
+LDFLAGS      := -l m
 
 .PHONY: all clean
 
-all: $(OUTPUT_NAME)
+all: $(PROGRAM_NAME)
 
-$(OUTPUT_NAME): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $@ $(LDFLAGS)
+$(PROGRAM_NAME): $(SRC)
+	$(CC) $(CFLAGS) $(DFLAGS) $(SRC) -o $@ $(LDFLAGS)
 
 clean:
-	$(RM) -f $(OUTPUT_NAME)
+	$(RM) -f $(PROGRAM_NAME)

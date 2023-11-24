@@ -19,21 +19,22 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_EASY_LIST_H
+#define DNR_EASY_LIST_H
 
-/*! \brief List of available modes */
-enum dnr_set_mode {
-    DNR_MODE_HELP,  /*!< List and show available easings */
-    DNR_MODE_TABLE  /*!< Generate data tables            */
+#include "../../easy/list/dnr_easy_xlist.h"
+
+#define DNR_X(X, x)         \
+    DNR_EASY_IN ## X,       \
+    DNR_EASY_OUT ## X,      \
+    DNR_EASY_INOUT ## X,    
+
+/*! \brief List of available easings */
+enum dnr_easy_list {
+    DNR_EASY_XLIST
+    DNR_EASY_COUNT
 };
 
-/*! \brief Selected work mode */
-extern enum dnr_set_mode dnr_set_mode;
-
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+#undef DNR_X
 
 #endif

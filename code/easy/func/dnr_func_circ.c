@@ -19,21 +19,29 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#include <math.h>
+#include "../../easy/func/dnr_func_circ.h"
 
-/*! \brief List of available modes */
-enum dnr_set_mode {
-    DNR_MODE_HELP,  /*!< List and show available easings */
-    DNR_MODE_TABLE  /*!< Generate data tables            */
-};
+/*! \brief InCirc easing function
+ * \param[in] x Input value, [0..1]
+ * \return Output value */
+double dnr_func_incirc(double x) {
+    return 1.0 - sqrt(1.0 - pow(x, 2.0));
+}
 
-/*! \brief Selected work mode */
-extern enum dnr_set_mode dnr_set_mode;
+/*! \brief OutCirc easing function
+ * \param[in] x Input value, [0..1]
+ * \return Output value */
+double dnr_func_outcirc(double x) {
+    return sqrt(1.0 - pow(x - 1.0, 2.0));
+}
 
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief InOutCirc easing function
+ * \param[in] x Input value, [0..1]
+ * \return Output value */
+double dnr_func_inoutcirc(double x) {
+    return x < 0.5 ? 
+        (1.0 - sqrt(1.0 - pow(2.0 * x, 2.0))) / 2.0 : 
+        (sqrt(1.0 - pow(-2.0 * x + 2.0, 2.0)) + 1.0) / 2.0;
+}
 
-#endif

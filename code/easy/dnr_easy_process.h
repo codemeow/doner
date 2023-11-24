@@ -5,12 +5,12 @@
  *
  *  This file is part of Project "Doner".
  *
- *  Project "Bixi" is free software: you can redistribute it and/or modify
+ *  Project "Doner" is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Project "Bixi" is distributed in the hope that it will be useful,
+ *  Project "Doner" is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Lesser General Public License for more details.
@@ -19,5 +19,10 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef DNR_EASY_PROCESS_H
+#define DNR_EASY_PROCESS_H
+
 /*! \brief Print the easing table */
 void dnr_easy_process(void);
+
+#endif

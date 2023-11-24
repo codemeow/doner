@@ -19,21 +19,21 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_EASY_DATA_H
+#define DNR_EASY_DATA_H
 
-/*! \brief List of available modes */
-enum dnr_set_mode {
-    DNR_MODE_HELP,  /*!< List and show available easings */
-    DNR_MODE_TABLE  /*!< Generate data tables            */
+/*! \brief Easing function template
+ * \param[in] X input value in the range of [0..1]
+ * \return Output value */
+typedef double (* dnr_easy_func)(double x);
+
+/*! \brief The information about each easing function */
+struct dnr_easy_data {
+    dnr_easy_func func;     /*!< Implementation function    */
+    const char *  name;     /*!< Easing name                */
 };
 
-/*! \brief Selected work mode */
-extern enum dnr_set_mode dnr_set_mode;
-
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Instance of easings' data */
+extern const struct dnr_easy_data dnr_easy_data[];
 
 #endif

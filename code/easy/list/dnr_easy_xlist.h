@@ -19,21 +19,20 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_EASY_XLIST_H
+#define DNR_EASY_XLIST_H
 
-/*! \brief List of available modes */
-enum dnr_set_mode {
-    DNR_MODE_HELP,  /*!< List and show available easings */
-    DNR_MODE_TABLE  /*!< Generate data tables            */
-};
-
-/*! \brief Selected work mode */
-extern enum dnr_set_mode dnr_set_mode;
-
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief X-Macro list of major easings names */
+#define DNR_EASY_XLIST      \
+    DNR_X(SINE,     sine   )\
+    DNR_X(QUAD,     quad   )\
+    DNR_X(CUBIC,    cubic  )\
+    DNR_X(QUART,    quart  )\
+    DNR_X(QUINT,    quint  )\
+    DNR_X(EXPO,     expo   )\
+    DNR_X(CIRC,     circ   )\
+    DNR_X(BACK,     back   )\
+    DNR_X(ELASTIC,  elastic)\
+    DNR_X(BOUNCE,   bounce )
 
 #endif
