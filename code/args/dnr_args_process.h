@@ -22,14 +22,13 @@
 #ifndef DNR_ARGS_PROCESS_H
 #define DNR_ARGS_PROCESS_H
 
-/*! \brief List of available modes */
-enum dnr_set_mode {
-    DNR_MODE_HELP,  /*!< List and show available easings */
-    DNR_MODE_TABLE  /*!< Generate data tables            */
-};
+#include "../mode/list/dnr_mode_list.h"
+#include "../easy/list/dnr_easy_list.h"
 
 /*! \brief Selected work mode */
-extern enum dnr_set_mode dnr_set_mode;
+extern enum dnr_mode_list dnr_set_mode;
+/*! \brief Selected easing */
+extern enum dnr_easy_list dnr_set_easy;
 
 /*! \brief Process input program arguments
  * \param[in] argc Number of arguments

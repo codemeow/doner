@@ -19,10 +19,10 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_MODE_HELP_H
-#define DNR_MODE_HELP_H
+#ifndef DNR_MODE_GRAPH_H
+#define DNR_MODE_GRAPH_H
 
-/*! \brief List and show available easings */
-void dnr_mode_help(void);
+/*! \brief Show selected easing's graph */
+void dnr_mode_graph(void);
 
 #endif

@@ -19,21 +19,22 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*! \note Great thanks to 
- *   - Andrey Sitnik (https://github.com/ai)
- *   - Ivan Soloviev (https://github.com/gosolivs)
- * for systematization of it at https://easings.net/ */
+#include <stdio.h>
+#include "../../mode/func/dnr_mode_graph.h"
 
-#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include "../../easy/data/dnr_easy_data.h"
+#include "../../args/dnr_args_process.h"
 
-#include "args/dnr_args_process.h"
+/*! \brief Show selected easing's graph */
+void dnr_mode_graph(void) {
+    // @todo dnr_mode_graph
+    printf("Graph mode for %s\n", dnr_easy_data[dnr_set_easy].name);
 
-/*! \brief Entry point
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments
- * \return Program exit code */
-int main(int argc, char * argv[]) {
-    dnr_args_process(argc, argv);
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
-    return EXIT_SUCCESS;
+    printf ("lines %d\n", w.ws_row);
+    printf ("columns %d\n", w.ws_col);
 }

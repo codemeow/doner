@@ -22,6 +22,8 @@
 #ifndef DNR_EASY_DATA_H
 #define DNR_EASY_DATA_H
 
+#include "../../easy/list/dnr_easy_list.h"
+
 /*! \brief Easing function template
  * \param[in] X input value in the range of [0..1]
  * \return Output value */
@@ -35,5 +37,10 @@ struct dnr_easy_data {
 
 /*! \brief Instance of easings' data */
 extern const struct dnr_easy_data dnr_easy_data[];
+
+/*! \brief Find easing enum by provided easing list
+ * \param[in] name Name to find ("insine", "inoutcirc", etc)
+ * \return Easing enum or dnr_easy_list::DNR_EASY_COUNT on fail */
+enum dnr_easy_list dnr_easy_name2list(const char * name);
 
 #endif

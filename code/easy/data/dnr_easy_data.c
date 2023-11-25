@@ -1,4 +1,4 @@
-    /*
+/*
  * "Doner" - Easing functions tables generator
  *
  *  Copyright (C) https://github.com/codemeow 2023
@@ -18,6 +18,8 @@
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include <string.h>
 
 #include "../../easy/data/dnr_easy_data.h"
 #include "../../easy/list/dnr_easy_xlist.h"
@@ -45,3 +47,15 @@ const struct dnr_easy_data dnr_easy_data[] = {
 };
 
 #undef DNR_X
+
+/*! \brief Find easing enum by provided easing list
+ * \param[in] name Name to find ("insine", "inoutcirc", etc)
+ * \return Easing enum or dnr_easy_list::DNR_EASY_COUNT on fail */
+enum dnr_easy_list dnr_easy_name2list(const char * name) {
+    for (size_t i = 0; i < sizeof(dnr_easy_data) / sizeof(dnr_easy_data[0]); i++) {
+        if (strcmp(dnr_easy_data[i].name, name) == 0)
+            return i;
+    }
+    return DNR_EASY_COUNT;
+}
+

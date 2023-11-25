@@ -19,18 +19,12 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../args/dnr_args_process.h"
-#include "../easy/dnr_easy_process.h"
-#include "../easy/mode/dnr_mode_help.h"
-#include "../easy/mode/dnr_mode_table.h"
+#ifndef DNR_MODE_XLIST_H
+#define DNR_MODE_XLIST_H
 
-/*! \brief Executes the selected mode function */
-void dnr_easy_process(void) {
-    typedef void (* dnr_mode_call)(void);
-    static const dnr_mode_call mode[] = {
-        [DNR_MODE_HELP  ] = dnr_mode_help,
-        [DNR_MODE_TABLE ] = dnr_mode_table
-    };
+/*! \brief X-Macro list of modes */
+#define DNR_MODE_XLIST  \
+    DNR_X(GRAPH, graph) \
+    DNR_X(TABLE, table)
 
-    mode[dnr_set_mode]();
-}
+#endif

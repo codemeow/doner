@@ -19,9 +19,26 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../easy/mode/dnr_mode_help.h"
+#ifndef DNR_MODE_DATA_H
+#define DNR_MODE_DATA_H
 
-/*! \brief List and show available easings */
-void dnr_mode_help(void) {
+#include "../../mode/list/dnr_mode_list.h"
 
-}
+/*! \brief Mode function template */
+typedef void (* dnr_mode_func)(void);
+
+/*! \brief The information about each mode function */
+struct dnr_mode_data {
+    dnr_mode_func func;     /*!< Implementation function    */
+    const char *  name;     /*!< Easing name                */
+};
+
+/*! \brief Instance of modes' data */
+extern const struct dnr_mode_data dnr_mode_data[];
+
+/*! \brief Find mode enum by provided mode list
+ * \param[in] name Name to find ("graph", "table", etc)
+ * \return Mode enum or dnr_mode_list::DNR_MODE_COUNT on fail */
+enum dnr_mode_list dnr_mode_name2list(const char * name);
+
+#endif

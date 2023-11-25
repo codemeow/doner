@@ -19,10 +19,14 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_EASY_PROCESS_H
-#define DNR_EASY_PROCESS_H
+#include <stdio.h>
+#include "../../mode/func/dnr_mode_table.h"
 
-/*! \brief Print the easing table */
-void dnr_easy_process(void);
+#include "../../easy/data/dnr_easy_data.h"
+#include "../../args/dnr_args_process.h"
 
-#endif
+/*! \brief Generate data tables */
+void dnr_mode_table(void) {
+    // @todo dnr_mode_table
+    printf("Table mode for %s\n", dnr_easy_data[dnr_set_easy].name);
+}

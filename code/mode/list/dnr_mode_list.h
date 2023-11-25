@@ -19,9 +19,21 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../easy/mode/dnr_mode_table.h"
+#ifndef DNR_MODE_LIST_H
+#define DNR_MODE_LIST_H
 
-/*! \brief Generate data tables */
-void dnr_mode_table(void) {
+#include "../../mode/list/dnr_mode_xlist.h"
 
-}
+#define DNR_X(X, x) \
+    DNR_MODE_ ## X,
+
+/*! \brief List of available modes */
+enum dnr_mode_list {
+    DNR_MODE_XLIST
+    DNR_MODE_COUNT
+};
+
+#undef DNR_X
+
+
+#endif
