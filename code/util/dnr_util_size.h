@@ -19,24 +19,26 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_UTIL_SIZE_H
+#define DNR_UTIL_SIZE_H
 
-#include "../mode/list/dnr_mode_list.h"
-#include "../easy/list/dnr_easy_list.h"
+/*! \brief Returns number of elements in the static array 
+ * \param[in] x Static array 
+ * \return Number of elements */
+#define DNR_SIZE(x) ((size_t)(sizeof(x) / sizeof((x)[0])))
 
-/*! \brief Selected work mode */
-extern enum dnr_mode_list dnr_set_mode;
-/*! \brief Selected easing */
-extern enum dnr_easy_list dnr_set_easy;
-/*! \brief Selected X mod */
-extern enum dnr_mmod_list dnr_set_xmod;
-/*! \brief Selected Y mod */
-extern enum dnr_mmod_list dnr_set_ymod;
+/*! \brief Returns the minimum of two numbers
+ * \note Be advised that both x and y are calculated twice
+ * \param[in] x First number
+ * \param[in] y Second number
+ * \return The lesser of [x, y] */
+#define DNR_MIN(x, y) ((x) < (y) ? (x) : (y))
 
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Returns the maximum of two numbers
+ * \note Be advised that both x and y are calculated twice
+ * \param[in] x First number
+ * \param[in] y Second number
+ * \return The greater of [x, y] */
+#define DNR_MAX(x, y) ((x) > (y) ? (x) : (y))
 
 #endif

@@ -19,24 +19,31 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#include <stddef.h>
+#include <string.h>
+#include "../../graph/data/dnr_mmod_data.h"
+#include "../../util/dnr_util_size.h"
 
-#include "../mode/list/dnr_mode_list.h"
-#include "../easy/list/dnr_easy_list.h"
+#include "../../graph/func/dnr_mmod_orig.h"
+#include "../../graph/func/dnr_mmod_inv.h"
 
-/*! \brief Selected work mode */
-extern enum dnr_mode_list dnr_set_mode;
-/*! \brief Selected easing */
-extern enum dnr_easy_list dnr_set_easy;
-/*! \brief Selected X mod */
-extern enum dnr_mmod_list dnr_set_xmod;
-/*! \brief Selected Y mod */
-extern enum dnr_mmod_list dnr_set_ymod;
+#define DNR_X(X, x)                            \
+    [DNR_MMOD_ ## X] = { dnr_mmod_ ## x, #x },
 
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Instance of mods' data */
+const struct dnr_mmod_data dnr_mmod_data[] = {
+    DNR_MMOD_XLIST
+};
 
-#endif
+#undef DNR_X
+
+/*! \brief Converts string name to mapmod element
+ * \param[in] name String representation
+ * \return Enum element or dnr_mapmod_list::DNR_MAPMOD_COUNT */
+enum dnr_mmod_list dnr_mmod_name2list(const char * name) {
+    for (size_t i = 0; i < DNR_SIZE(dnr_mmod_data); i++) {
+        if (strcmp(dnr_mmod_data[i].name, name) == 0)
+            return i;
+    }
+    return DNR_MMOD_COUNT;
+}

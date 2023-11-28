@@ -24,9 +24,11 @@
 #include "../../mode/data/dnr_mode_data.h"
 #include "../../mode/list/dnr_mode_xlist.h"
 #include "../../mode/list/dnr_mode_list.h"
+#include "../../util/dnr_util_size.h"
 
 #include "../../mode/func/dnr_mode_graph.h"
 #include "../../mode/func/dnr_mode_table.h"
+
 
 #define DNR_X(X, x)                                     \
     [DNR_MODE_ ## X   ] = { dnr_mode_ ## x, #x,   },
@@ -42,7 +44,7 @@ const struct dnr_mode_data dnr_mode_data[] = {
  * \param[in] name Name to find ("graph", "table", etc)
  * \return Mode enum or dnr_mode_list::DNR_MODE_COUNT on fail */
 enum dnr_mode_list dnr_mode_name2list(const char * name) {
-    for (size_t i = 0; i < sizeof(dnr_mode_data) / sizeof(dnr_mode_data[0]); i++) {
+    for (size_t i = 0; i < DNR_SIZE(dnr_mode_data); i++) {
         if (strcmp(dnr_mode_data[i].name, name) == 0)
             return i;
     }

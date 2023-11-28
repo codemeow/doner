@@ -19,24 +19,13 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_UTIL_TERM_H
+#define DNR_UTIL_TERM_H
 
-#include "../mode/list/dnr_mode_list.h"
-#include "../easy/list/dnr_easy_list.h"
-
-/*! \brief Selected work mode */
-extern enum dnr_mode_list dnr_set_mode;
-/*! \brief Selected easing */
-extern enum dnr_easy_list dnr_set_easy;
-/*! \brief Selected X mod */
-extern enum dnr_mmod_list dnr_set_xmod;
-/*! \brief Selected Y mod */
-extern enum dnr_mmod_list dnr_set_ymod;
-
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Returns current terminal's size
+ * \note If the terminal is not present, some standard size is returned
+ * \param[out] width Terminal's width
+ * \param[out] height Terminal's height */
+void dnr_util_term(unsigned short * width, unsigned short * height);
 
 #endif

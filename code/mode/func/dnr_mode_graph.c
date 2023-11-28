@@ -21,20 +21,26 @@
 
 #include <stdio.h>
 #include "../../mode/func/dnr_mode_graph.h"
+#include "../../util/dnr_util_term.h"
+#include "../../graph/dnr_map_alloc.h"
+#include "../../graph/dnr_map_show.h"
+#include "../../graph/dnr_map_plot.h"
+#include "../../graph/dnr_map_util.h"
 
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include "../../easy/data/dnr_easy_data.h"
-#include "../../args/dnr_args_process.h"
 
 /*! \brief Show selected easing's graph */
 void dnr_mode_graph(void) {
-    // @todo dnr_mode_graph
-    printf("Graph mode for %s\n", dnr_easy_data[dnr_set_easy].name);
+    unsigned short term_w;
+    unsigned short term_h;
 
-    struct winsize w;
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    dnr_util_term(&term_w, &term_h);
 
-    printf ("lines %d\n", w.ws_row);
-    printf ("columns %d\n", w.ws_col);
+    struct dnr_map_type * map = dnr_map_alloc(
+        dnr_map_termw2mapw(term_w),
+        dnr_map_termh2maph(term_h)
+    );
+
+    dnr_map_plot(map);
+    dnr_map_show(map);
+    dnr_map_free(map);
 }

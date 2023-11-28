@@ -19,24 +19,19 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_MAP_ALLOC_H
+#define DNR_MAP_ALLOC_H
 
-#include "../mode/list/dnr_mode_list.h"
-#include "../easy/list/dnr_easy_list.h"
+#include "../graph/dnr_map_type.h"
 
-/*! \brief Selected work mode */
-extern enum dnr_mode_list dnr_set_mode;
-/*! \brief Selected easing */
-extern enum dnr_easy_list dnr_set_easy;
-/*! \brief Selected X mod */
-extern enum dnr_mmod_list dnr_set_xmod;
-/*! \brief Selected Y mod */
-extern enum dnr_mmod_list dnr_set_ymod;
+/*! \brief Creates new bitmap
+ * \param[in] width Width of bitmap
+ * \param[in] height Height of bitmap
+ * \return Allocated bitmap */
+struct dnr_map_type * dnr_map_alloc(size_t width, size_t height);
 
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Frees provided bitmap
+ * \param[in] map Provided bitmap */
+void dnr_map_free(struct dnr_map_type * map);
 
 #endif

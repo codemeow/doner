@@ -24,6 +24,7 @@
 #include "../../easy/data/dnr_easy_data.h"
 #include "../../easy/list/dnr_easy_xlist.h"
 #include "../../easy/list/dnr_easy_list.h"
+#include "../../util/dnr_util_size.h"
 
 #include "../../easy/func/dnr_func_sine.h"
 #include "../../easy/func/dnr_func_quad.h"
@@ -52,7 +53,7 @@ const struct dnr_easy_data dnr_easy_data[] = {
  * \param[in] name Name to find ("insine", "inoutcirc", etc)
  * \return Easing enum or dnr_easy_list::DNR_EASY_COUNT on fail */
 enum dnr_easy_list dnr_easy_name2list(const char * name) {
-    for (size_t i = 0; i < sizeof(dnr_easy_data) / sizeof(dnr_easy_data[0]); i++) {
+    for (size_t i = 0; i < DNR_SIZE(dnr_easy_data); i++) {
         if (strcmp(dnr_easy_data[i].name, name) == 0)
             return i;
     }

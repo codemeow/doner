@@ -25,11 +25,16 @@
 #include "../args/dnr_args_process.h"
 #include "../easy/data/dnr_easy_data.h"
 #include "../mode/data/dnr_mode_data.h"
+#include "../graph/data/dnr_mmod_data.h"
 
 /*! \brief Selected work mode */
 enum dnr_mode_list dnr_set_mode = DNR_MODE_GRAPH;
 /*! \brief Selected easing */
 enum dnr_easy_list dnr_set_easy = DNR_EASY_INSINE;
+/*! \brief Selected X mod */
+enum dnr_mmod_list dnr_set_xmod = DNR_MMOD_ORIG;
+/*! \brief Selected Y mod */
+enum dnr_mmod_list dnr_set_ymod = DNR_MMOD_ORIG;
 
 /*! \brief Print help and exit 
  * \param[in] code Exit code */
@@ -41,6 +46,8 @@ static void _args_help(int code) {
     exit(code);
 }
 
+///@todo Overflow rule
+
 /*! \brief Process input program arguments
  * \param[in] argc Number of arguments
  * \param[in] argv List of arguments */
@@ -49,11 +56,13 @@ void dnr_args_process(int argc, char * argv[]) {
         { "help",   no_argument,        NULL, 'h'   },
         { "easy",   required_argument,  NULL, 'e'   },
         { "mode",   required_argument,  NULL, 'm'   },
+        { "xmod",   required_argument,  NULL, 'x'   },
+        { "ymod",   required_argument,  NULL, 'y'   },
         { NULL,     0,                  NULL, 0     }
     };
 
     while (1) {
-        int c = getopt_long(argc, argv, "he:m:", options, NULL);
+        int c = getopt_long(argc, argv, "he:m:x:y:", options, NULL);
         if (c == -1)
             break;
         
@@ -73,6 +82,22 @@ void dnr_args_process(int argc, char * argv[]) {
                 dnr_set_mode = dnr_mode_name2list(optarg);
                 if (dnr_set_mode == DNR_MODE_COUNT) {
                     fprintf(stderr, "Unknown mode: %s\n", optarg);
+                    _args_help(EXIT_FAILURE);
+                }
+                break;
+
+            case 'x' :
+                dnr_set_xmod = dnr_mmod_name2list(optarg);
+                if (dnr_set_xmod == DNR_MMOD_COUNT) {
+                    fprintf(stderr, "Unknown X modifier: %s\n", optarg);
+                    _args_help(EXIT_FAILURE);
+                }
+                break;
+
+            case 'y' :
+                dnr_set_ymod = dnr_mmod_name2list(optarg);
+                if (dnr_set_ymod == DNR_MMOD_COUNT) {
+                    fprintf(stderr, "Unknown Y modifier: %s\n", optarg);
                     _args_help(EXIT_FAILURE);
                 }
                 break;

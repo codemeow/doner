@@ -19,24 +19,24 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_ARGS_PROCESS_H
-#define DNR_ARGS_PROCESS_H
+#ifndef DNR_MAP_UTIL_H
+#define DNR_MAP_UTIL_H
 
-#include "../mode/list/dnr_mode_list.h"
-#include "../easy/list/dnr_easy_list.h"
+#include <stddef.h>
 
-/*! \brief Selected work mode */
-extern enum dnr_mode_list dnr_set_mode;
-/*! \brief Selected easing */
-extern enum dnr_easy_list dnr_set_easy;
-/*! \brief Selected X mod */
-extern enum dnr_mmod_list dnr_set_xmod;
-/*! \brief Selected Y mod */
-extern enum dnr_mmod_list dnr_set_ymod;
+/*! \brief Number of X braille dots per char */
+extern const size_t dnr_braille_width;
+/*! \brief Number of Y braille dots per char */
+extern const size_t dnr_braille_height;
 
-/*! \brief Process input program arguments
- * \param[in] argc Number of arguments
- * \param[in] argv List of arguments */
-void dnr_args_process(int argc, char * argv[]);
+/*! \brief Converts terminal width to map width
+ * \param[in] width Terminal width
+ * \return Map width */
+size_t dnr_map_termw2mapw(size_t width);
+
+/*! \brief Converts terminal height to map width
+ * \param[in] height Terminal height
+ * \return Map height */
+size_t dnr_map_termh2maph(size_t height);
 
 #endif
