@@ -30,6 +30,8 @@
 struct dnr_map_type {
     size_t width;           /*!< Bitmap width   */
     size_t height;          /*!< Bitmap height  */
+    double min;             /*!< Graph minimum  */
+    double max;             /*!< Graph maximum  */
     unsigned char * data;   /*!< Bitmap data    */
 };
 

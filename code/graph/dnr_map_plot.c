@@ -48,18 +48,14 @@ static const double dnr_map_yb = 0.95;
 /*! \brief Plots the function graph in the selected bitmap
  * \param[in] map Bitmap to use
  * \param[out] width Calculated width of the graph
- * \param[out] min Global minimum of the function
- * \param[out] max Global maximum of the function
  * \return Array of values of the width `width` */
 static double * _map_plot(
     struct dnr_map_type * map, 
-    size_t * width,
-    double * min, 
-    double * max
+    size_t * width
 ) {
     *width = map->width - dnr_map_axisy - dnr_map_axisp;
-    *max = DBL_MIN;
-    *min = DBL_MAX;
+    map->max = DBL_MIN;
+    map->min = DBL_MAX;
     double * yvalues = malloc(*width * sizeof(double));
 
     for (size_t x = 0; x < *width; x++) {
@@ -69,10 +65,10 @@ static double * _map_plot(
         yvalues[x] = dnr_easy_data[dnr_set_easy].func(fx);
         yvalues[x] = dnr_mmod_data[dnr_set_ymod].func(yvalues[x]);
 
-        if (*max < yvalues[x])
-            *max = yvalues[x];
-        if (*min > yvalues[x])
-            *min = yvalues[x];
+        if (map->max < yvalues[x])
+            map->max = yvalues[x];
+        if (map->min > yvalues[x])
+            map->min = yvalues[x];
     }
 
     return yvalues;
@@ -134,13 +130,9 @@ static void _map_char(
 
 /*! \brief Plot the X axis on the graph
  * \param[in] map Bitmap to use
- * \param[in] min Global minimum of the function
- * \param[in] max Global maximum of the function
  * \param[out] map0 0-level of the axis in pixels */
 void _map_axisx(
     struct dnr_map_type * map, 
-    double min, 
-    double max, 
     size_t * map0
 ) {
     const double mapmin = map->height * dnr_map_yt;
@@ -148,8 +140,8 @@ void _map_axisx(
     const double height = mapmax - mapmin;
     size_t map1;
 
-    *map0 = round((height * -min) / (max - min) + mapmin);
-     map1 = round((height *  1.0) / (max - min) + *map0 );
+    *map0 = round((height * -map->min) / (map->max - map->min) + mapmin);
+     map1 = round((height *  1.0     ) / (map->max - map->min) + *map0 );
     
     /* Note, that we invert the positions as the above plot's Y grows up
      * and screen Y grows down */
@@ -160,7 +152,7 @@ void _map_axisx(
     }
 
     _map_char(map, dnr_map_axisy, map->height - *map0, 0, true );
-    _map_char(map, dnr_map_axisy, map->height - map1,  1, false);
+    _map_char(map, dnr_map_axisy, map->height -  map1, 1, false);
 }
 
 /*! \brief Plots the graph, selected by args
@@ -172,16 +164,14 @@ void dnr_map_plot(struct dnr_map_type * map) {
     size_t       map0;
 
     size_t       plotwidth;
-    double       plotmin;
-    double       plotmax;
 
-    double * yvalues = _map_plot(map, &plotwidth, &plotmin, &plotmax);
+    double * yvalues = _map_plot(map, &plotwidth);
 
     _map_axisy(map);
-    _map_axisx(map, plotmin, plotmax, &map0);
+    _map_axisx(map, &map0);
 
     for (size_t x = 0; x <= plotwidth; x++) {
-        ssize_t y = round(yvalues[x] * (mapwide)/(plotmax - plotmin));
+        ssize_t y = round(yvalues[x] * (mapwide)/(map->max - map->min));
         dnr_map_set(map, x + dnr_map_axisy, map->height - y - map0, 1);
     }
 

@@ -39,6 +39,8 @@ struct dnr_map_type * dnr_map_alloc(size_t width, size_t height) {
 
     map->width  = width;
     map->height = height;
+    map->max    = 0.0;
+    map->min    = 0.0;
     map->data   = malloc(size);
     if (!map->data) {
         fprintf(stderr, "Allocation error: %zu bytes\n", size);

@@ -20,29 +20,16 @@
  */
 
 #include <stdio.h>
-#include "../../mode/func/dnr_mode_graph.h"
-#include "../../util/dnr_util_term.h"
-#include "../../graph/dnr_map_alloc.h"
-#include "../../graph/dnr_map_show.h"
-#include "../../graph/dnr_map_plot.h"
-#include "../../graph/dnr_map_info.h"
-#include "../../graph/dnr_map_util.h"
+#include "../graph/dnr_map_info.h"
+#include "../args/dnr_args_process.h"
+#include "../easy/data/dnr_easy_data.h"
 
-
-/*! \brief Show selected easing's graph */
-void dnr_mode_graph(void) {
-    unsigned short term_w;
-    unsigned short term_h;
-
-    dnr_util_term(&term_w, &term_h);
-
-    struct dnr_map_type * map = dnr_map_alloc(
-        dnr_map_termw2mapw(term_w),
-        dnr_map_termh2maph(term_h)
-    );
-
-    dnr_map_plot(map);
-    dnr_map_info(map);
-    dnr_map_show(map);
-    dnr_map_free(map);
+/*! \brief Shows map's info
+ * \param[in] map Bitmap */
+void dnr_map_info(struct dnr_map_type * map) {
+    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
+    printf("Graph :\n");
+    printf("    Min: %8.3f\n", map->min);
+    printf("    Max: %8.3f\n", map->max);
+    printf("\n");
 }

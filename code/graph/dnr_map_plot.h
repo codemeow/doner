@@ -26,7 +26,6 @@
 
 /*! \brief Plots the graph, selected by args
  * \param[in] map Provided bitmap */
-__attribute__((nonnull(1)))
 void dnr_map_plot(struct dnr_map_type * map);
 
 #endif
