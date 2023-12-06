@@ -19,12 +19,27 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../../mode/func/dnr_mode_table.h"
-#include "../../table/dnr_table_print.h"
+#include "../../table/data/dnr_nmod_data.h"
+#include "../../table/list/dnr_nmod_xlist.h"
+#include "../../table/list/dnr_nmod_list.h"
 
-/*! \brief Generate data tables */
-void dnr_mode_table(void) {
-    dnr_table_print();
-}
+#include "../../table/func/dnr_nmod_u8.h"
+#include "../../table/func/dnr_nmod_i8.h"
+#include "../../table/func/dnr_nmod_u16.h"
+#include "../../table/func/dnr_nmod_i16.h"
+#include "../../table/func/dnr_nmod_u32.h"
+#include "../../table/func/dnr_nmod_i32.h"
+#include "../../table/func/dnr_nmod_u64.h"
+#include "../../table/func/dnr_nmod_i64.h"
+#include "../../table/func/dnr_nmod_f64.h"
+
+#define DNR_X(X, x)                       \
+    [DNR_NMOD_ ## X   ] = { dnr_nmod_ ## x },
+
+/*! \brief Instance of numeric modes' data */
+const struct dnr_nmod_data dnr_nmod_data[] = {
+    DNR_NMOD_XLIST
+};
+
+#undef DNR_X
+

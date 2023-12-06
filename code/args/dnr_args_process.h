@@ -33,6 +33,16 @@ extern enum dnr_easy_list dnr_set_easy;
 extern enum dnr_mmod_list dnr_set_xmod;
 /*! \brief Selected Y mod */
 extern enum dnr_mmod_list dnr_set_ymod;
+/*! \brief Selected numeric representation mode */
+extern enum dnr_nmod_list dnr_set_nmod;
+
+/*! \brief Top overflow border */
+extern double dnr_set_otop;
+/*! \brief Bottom overflow border */
+extern double dnr_set_obottom;
+
+/*! \brief Cell value multiplier */
+extern double dnr_set_kmult;
 
 /*! \brief Process input program arguments
  * \param[in] argc Number of arguments

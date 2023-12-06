@@ -20,11 +20,14 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "../../mode/func/dnr_mode_table.h"
-#include "../../table/dnr_table_print.h"
+#include <stdint.h>
+#include <math.h>
 
-/*! \brief Generate data tables */
-void dnr_mode_table(void) {
-    dnr_table_print();
+#include "../../table/func/dnr_nmod_i32.h"
+
+/*! \brief Prints the value of the function point with the selected formatter
+ * \param[in] fmt Formatter, set for the appropriate type
+ * \param[in] fy Function value in this point */
+void dnr_nmod_i32(const char * fmt, double fy) {
+    printf(fmt, (int32_t)round(fy));
 }

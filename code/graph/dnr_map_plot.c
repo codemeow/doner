@@ -54,8 +54,8 @@ static double * _map_plot(
     size_t * width
 ) {
     *width = map->width - dnr_map_axisy - dnr_map_axisp;
-    map->max = DBL_MIN;
-    map->min = DBL_MAX;
+    map->max = -DBL_MAX;
+    map->min =  DBL_MAX;
     double * yvalues = malloc(*width * sizeof(double));
 
     for (size_t x = 0; x < *width; x++) {
@@ -64,6 +64,16 @@ static double * _map_plot(
 
         yvalues[x] = dnr_easy_data[dnr_set_easy].func(fx);
         yvalues[x] = dnr_mmod_data[dnr_set_ymod].func(yvalues[x]);
+
+        yvalues[x] *= dnr_set_kmult;
+
+        const double wide = dnr_set_otop - dnr_set_obottom;
+        if (yvalues[x] >= dnr_set_otop) {
+            yvalues[x] = fmod(yvalues[x], wide) + dnr_set_obottom;
+        }
+        if (yvalues[x] <= dnr_set_obottom) {
+            yvalues[x] = dnr_set_otop + fmod(yvalues[x], wide);
+        }
 
         if (map->max < yvalues[x])
             map->max = yvalues[x];
@@ -152,7 +162,6 @@ void _map_axisx(
     }
 
     _map_char(map, dnr_map_axisy, map->height - *map0, 0, true );
-    _map_char(map, dnr_map_axisy, map->height -  map1, 1, false);
 }
 
 /*! \brief Plots the graph, selected by args

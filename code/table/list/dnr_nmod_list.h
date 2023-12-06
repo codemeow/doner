@@ -19,12 +19,20 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../../mode/func/dnr_mode_table.h"
-#include "../../table/dnr_table_print.h"
+#ifndef DNR_NMOD_LIST_H
+#define DNR_NMOD_LIST_H
 
-/*! \brief Generate data tables */
-void dnr_mode_table(void) {
-    dnr_table_print();
-}
+#include "../../table/list/dnr_nmod_xlist.h"
+
+#define DNR_X(X, x)         \
+    DNR_NMOD_ ## X,
+
+/*! \brief List of available numeric modes */
+enum dnr_nmod_list {
+    DNR_NMOD_XLIST
+    DNR_NMOD_COUNT
+};
+
+#undef DNR_X
+
+#endif

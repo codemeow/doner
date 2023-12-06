@@ -19,12 +19,18 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../../mode/func/dnr_mode_table.h"
-#include "../../table/dnr_table_print.h"
+#ifndef DNR_UTIL_PLATFORM_H
+#define DNR_UTIL_PLATFORM_H
 
-/*! \brief Generate data tables */
-void dnr_mode_table(void) {
-    dnr_table_print();
-}
+#if defined(__gnu_linux__)  || defined(__unix__) || defined(__unix)
+#   define DNR_PLATFORM_NIX
+
+#elif defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || \
+    defined(__TOS_WIN__) || defined(__WINDOWS__)
+#   define DNR_PLATFORM_WIN
+
+#else
+#   error Unsupported platform. Provide required platform check
+#endif
+
+#endif 
