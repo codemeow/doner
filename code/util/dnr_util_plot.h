@@ -19,17 +19,16 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include "../graph/dnr_map_info.h"
-#include "../args/dnr_args_vars.h"
-#include "../easy/data/dnr_easy_data.h"
+#ifndef DNR_UTIL_PLOT_H
+#define DNR_UTIL_PLOT_H
 
-/*! \brief Shows map's info
- * \param[in] map Bitmap */
-void dnr_map_info(struct dnr_map_type * map) {
-    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
-}
+#include <stdlib.h>
+
+/*! \brief Plots the point of the currently selected function according to the
+ * provided plot width and x point
+ * \param[in] width Plot width (how many points there should be between [0, 1])
+ * \param[in] x Current position
+ * \return Calculated final value of F(x) */
+double dnr_util_plot(size_t width, double x);
+
+#endif

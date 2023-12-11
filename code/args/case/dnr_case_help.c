@@ -19,17 +19,12 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include "../graph/dnr_map_info.h"
-#include "../args/dnr_args_vars.h"
-#include "../easy/data/dnr_easy_data.h"
+#include <stdlib.h>
 
-/*! \brief Shows map's info
- * \param[in] map Bitmap */
-void dnr_map_info(struct dnr_map_type * map) {
-    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
+#include "../../args/case/dnr_case_help.h"
+#include "../../util/dnr_util_help.h"
+
+/*! \brief Prints help */
+void dnr_args_help(void) {
+    dnr_util_help(EXIT_SUCCESS);
 }

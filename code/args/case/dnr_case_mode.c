@@ -20,16 +20,18 @@
  */
 
 #include <stdio.h>
-#include "../graph/dnr_map_info.h"
-#include "../args/dnr_args_vars.h"
-#include "../easy/data/dnr_easy_data.h"
+#include <getopt.h>
 
-/*! \brief Shows map's info
- * \param[in] map Bitmap */
-void dnr_map_info(struct dnr_map_type * map) {
-    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
+#include "../../args/case/dnr_case_mode.h"
+#include "../../args/dnr_args_vars.h"
+#include "../../mode/data/dnr_mode_data.h"
+#include "../../util/dnr_util_help.h"
+
+/*! \brief Selects work mode for the program */
+void dnr_args_mode(void) {
+    dnr_set_mode = dnr_mode_name2list(optarg);
+    if (dnr_set_mode == DNR_MODE_COUNT) {
+        fprintf(stderr, "Unknown mode: %s\n", optarg);
+        dnr_util_help(EXIT_FAILURE);
+    }
 }

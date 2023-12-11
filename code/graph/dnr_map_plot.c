@@ -28,10 +28,9 @@
 
 #include "../graph/dnr_map_plot.h"
 #include "../graph/dnr_map_pixel.h"
-#include "../graph/data/dnr_mmod_data.h"
-#include "../easy/data/dnr_easy_data.h"
-#include "../args/dnr_args_process.h"
+#include "../args/dnr_args_vars.h"
 #include "../util/dnr_util_size.h"
+#include "../util/dnr_util_plot.h"
 
 /*! \brief Bottom X axis padding */
 static const size_t dnr_map_axisx = 4;
@@ -59,13 +58,7 @@ static double * _map_plot(
     double * yvalues = malloc(*width * sizeof(double));
 
     for (size_t x = 0; x < *width; x++) {
-        double fx = (double)x * (1.0 / (*width - 1));
-        fx = dnr_mmod_data[dnr_set_xmod].func(fx);
-
-        yvalues[x] = dnr_easy_data[dnr_set_easy].func(fx);
-        yvalues[x] = dnr_mmod_data[dnr_set_ymod].func(yvalues[x]);
-
-        yvalues[x] *= dnr_set_kmult;
+        yvalues[x] = dnr_util_plot(*width, (double)x);
 
         const double wide = dnr_set_otop - dnr_set_obottom;
         if (yvalues[x] >= dnr_set_otop) {

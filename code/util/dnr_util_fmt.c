@@ -19,47 +19,14 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <ctype.h>
+#include <stddef.h>
 #include <errno.h>
+#include <stdlib.h>
 #include <string.h>
 
-#include "../table/dnr_table_util.h"
-#include "../util/dnr_util_platform.h"
 #include "../util/dnr_util_size.h"
-
-/*! \brief Number of elements in one line */
-size_t dnr_set_twidth = 16;
-
-/*! \brief Number of elements in the table */
-size_t dnr_set_tcount = 64;
-
-/*! \brief Printf-like formatting string for first cell rendering */
-const char * dnr_set_ffcell = NULL;
-
-/*! \brief Printf-like formatting string for middle cells rendering */
-const char * dnr_set_fmcell = "%8.2f ";
-
-/*! \brief Printf-like formatting string for last cell rendering */
-const char * dnr_set_flcell = NULL;
-
-/* !\ brief Cell type, according to format for the first cell */
-enum dnr_nmod_list dnr_set_fnmod = DNR_NMOD_F64;
-/* !\ brief Cell type, according to format for middle cells */
-enum dnr_nmod_list dnr_set_mnmod = DNR_NMOD_F64;
-/* !\ brief Cell type, according to format for the last cell */
-enum dnr_nmod_list dnr_set_lnmod = DNR_NMOD_F64;
-
-/*! \brief Sets the number of elements in one line
- * \param[in] value String value to parse
- * \return True if the value was successfully parsed */
-bool dnr_table_setwidth(const char * value) {
-    char * end = NULL;
-    dnr_set_twidth = strtol(value, &end, 10);
-    return end && *end == '\0';
-}
+#include "../util/dnr_util_fmt.h"
+#include "../util/dnr_util_platform.h"
 
 static const char * _format_flag(const char * fmt) {
     if (!fmt)
@@ -186,7 +153,7 @@ static const char * _format_type(
  * \param[in] fmt Formatter string
  * \return True is only one value is required and the type is 
  * successfully parsed */
-bool dnr_format_parse(enum dnr_nmod_list * mode, const char * fmt) {
+bool _format_parse(enum dnr_nmod_list * mode, const char * fmt) {
     size_t matches = 0;
     while (fmt) {
         fmt = _format_exp  (fmt);
@@ -197,35 +164,16 @@ bool dnr_format_parse(enum dnr_nmod_list * mode, const char * fmt) {
     return matches == 1;
 }
 
-/*! \brief Sets the printf-like formatting string for first cell rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setfcell(const char * value) {
-    dnr_set_ffcell = value;
-    return dnr_format_parse(&dnr_set_fnmod, value);
-}
-
-/*! \brief Sets the printf-like formatting string for middle cells rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setmcell(const char * value) {
-    dnr_set_fmcell = value;
-    return dnr_format_parse(&dnr_set_mnmod, value);
-}
-
-/*! \brief Sets the printf-like formatting string for last cell rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setlcell(const char * value) {
-    dnr_set_flcell = value;
-    return dnr_format_parse(&dnr_set_lnmod, value);
-}
-
-/*! \brief Sets the number of elements in the table
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setcount(const char * value) {
-    char * end = NULL;
-    dnr_set_tcount = strtol(value, &end, 10);
-    return end && *end == '\0';
+/*! \brief Parses and assigns the fmt string, checking for printf-allowed fmt
+ * \param[out] nmod Assigns the NMOD value for this string
+ * \param[out] fmt Assigns the fmt string
+ * \param[in] value The string to parse 
+ * \return True if both nmod and fmt assigned successfully */
+bool dnr_set_fmt(
+    enum dnr_nmod_list * nmod, 
+    const char ** fmt, 
+    const char * value
+) {
+    *fmt = value;
+    return _format_parse(nmod, value);
 }

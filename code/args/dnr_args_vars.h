@@ -19,13 +19,37 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_TABLE_UTIL_H
-#define DNR_TABLE_UTIL_H
+#ifndef DNR_ARGS_VARS_H
+#define DNR_ARGS_VARS_H
 
-#include <stdbool.h>
 #include <stdlib.h>
 
+#include "../mode/list/dnr_mode_list.h"
+#include "../easy/list/dnr_easy_list.h"
+#include "../graph/list/dnr_mmod_list.h"
 #include "../table/list/dnr_nmod_list.h"
+
+/*! \brief Selected work mode */
+extern enum dnr_mode_list dnr_set_mode;
+/*! \brief Selected easing */
+extern enum dnr_easy_list dnr_set_easy;
+/*! \brief Selected X mod */
+extern enum dnr_mmod_list dnr_set_xmod;
+/*! \brief Selected Y mod */
+extern enum dnr_mmod_list dnr_set_ymod;
+/*! \brief Selected numeric representation mode */
+extern enum dnr_nmod_list dnr_set_nmod;
+
+/*! \brief Top overflow border */
+extern double dnr_set_otop;
+/*! \brief Bottom overflow border */
+extern double dnr_set_obottom;
+
+/*! \brief Cell value multiplier */
+extern double dnr_set_kmult;
+
+/*! \brief Cell value shifter */
+extern double dnr_set_kshift;
 
 /*! \brief Number of elements in one line */
 extern size_t dnr_set_twidth;
@@ -48,30 +72,5 @@ extern enum dnr_nmod_list dnr_set_fnmod;
 extern enum dnr_nmod_list dnr_set_mnmod;
 /* !\ brief Cell type, according to format for the last cell */
 extern enum dnr_nmod_list dnr_set_lnmod;
-
-/*! \brief Sets the number of elements in one line
- * \param[in] value String value to parse
- * \return True if the value was successfully parsed */
-bool dnr_table_setwidth(const char * value);
-
-/*! \brief Sets the printf-like formatting string for first cell rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setfcell(const char * value);
-
-/*! \brief Sets the printf-like formatting string for middle cells rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setmcell(const char * value);
-
-/*! \brief Sets the printf-like formatting string for last cell rendering
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setlcell(const char * value);
-
-/*! \brief Sets the number of elements in the table
- * \param[in] value String value to parse
- * \return True if the value was successfully applied */
-bool dnr_table_setcount(const char * value);
 
 #endif

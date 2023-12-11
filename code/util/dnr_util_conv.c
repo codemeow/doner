@@ -19,17 +19,25 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include "../graph/dnr_map_info.h"
-#include "../args/dnr_args_vars.h"
-#include "../easy/data/dnr_easy_data.h"
+#include <stdlib.h>
+#include "../util/dnr_util_conv.h"
 
-/*! \brief Shows map's info
- * \param[in] map Bitmap */
-void dnr_map_info(struct dnr_map_type * map) {
-    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
+/*! \brief Converts string value to double
+ * \param[out] Value to set
+ * \param[in] str String to convert
+ * \return True if the conversion was successfull */
+bool dnr_set_dvalue(double * value, const char * str) {
+    char * end = NULL;
+    *value = strtod(str, &end);
+    return end && *end == '\0';
+}
+
+/*! \brief Converts string value to size_t
+ * \param[out] Value to set
+ * \param[in] str String to convert
+ * \return True if the conversion was successfull */
+bool dnr_set_svalue(size_t * value, const char * str) {
+    char * end = NULL;
+    *value = strtol(str, &end, 10);
+    return end && *end == '\0';
 }

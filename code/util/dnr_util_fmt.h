@@ -19,17 +19,21 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include "../graph/dnr_map_info.h"
-#include "../args/dnr_args_vars.h"
-#include "../easy/data/dnr_easy_data.h"
+#ifndef DNR_UTIL_FMT_H
+#define DNR_UTIL_FMT_H
 
-/*! \brief Shows map's info
- * \param[in] map Bitmap */
-void dnr_map_info(struct dnr_map_type * map) {
-    printf("Easing: %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
-}
+#include <stdbool.h>
+#include "../table/list/dnr_nmod_list.h"
+
+/*! \brief Parses and assigns the fmt string, checking for printf-allowed fmt
+ * \param[out] nmod Assigns the NMOD value for this string
+ * \param[out] fmt Assigns the fmt string
+ * \param[in] value The string to parse 
+ * \return True if both nmod and fmt assigned successfully */
+bool dnr_set_fmt(
+    enum dnr_nmod_list * nmod, 
+    const char ** fmt, 
+    const char * value
+);
+
+#endif

@@ -27,6 +27,11 @@
 #include <stdlib.h>
 
 #include "args/dnr_args_process.h"
+#include "mode/dnr_mode_run.h"
+
+/*! \todo args values as 's' "S" to separate defines */
+/*! \todo print help */
+/*! \todo mmod remove from graph */
 
 /*! \brief Entry point
  * \param[in] argc Number of arguments
@@ -34,6 +39,7 @@
  * \return Program exit code */
 int main(int argc, char * argv[]) {
     dnr_args_process(argc, argv);
+    dnr_mode_run();
 
     return EXIT_SUCCESS;
 }

@@ -23,23 +23,15 @@
 #include <stdint.h>
 #include <math.h>
 #include "../table/dnr_table_print.h"
-#include "../table/dnr_table_util.h"
-#include "../easy/data/dnr_easy_data.h"
-#include "../graph/data/dnr_mmod_data.h"
 #include "../table/data/dnr_nmod_data.h"
-#include "../args/dnr_args_process.h"
+#include "../args/dnr_args_vars.h"
+#include "../util/dnr_util_plot.h"
 
 /*! \brief Prints the table values */
 void dnr_table_print(void) {
     for (size_t x = 0; x < dnr_set_tcount; x++) {
-        double fx = (double)x * (1.0 / (dnr_set_tcount - 1));
-        fx = dnr_mmod_data[dnr_set_xmod].func(fx);
+        double fy = dnr_util_plot(dnr_set_tcount, (double)x);
 
-        double fy = dnr_easy_data[dnr_set_easy].func(fx);
-        fy = dnr_mmod_data[dnr_set_ymod].func(fy);
-        fy *= dnr_set_kmult;
-
-        ///@todo Move to /core/ with map_plot
         const double wide = dnr_set_otop - dnr_set_obottom;
         if (fy >= dnr_set_otop) {
             fy = fmod(fy, wide) + dnr_set_obottom;
