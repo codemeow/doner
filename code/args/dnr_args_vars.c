@@ -38,22 +38,18 @@ double dnr_set_obottom = -DBL_MAX;
 
 /*! \brief Cell value multiplier */
 double dnr_set_kmult = 1.0;
-
 /*! \brief Cell value shifter */
 double dnr_set_kshift = 0.0;
 
 /*! \brief Number of elements in one line */
 size_t dnr_set_twidth = 16;
-
 /*! \brief Number of elements in the table */
 size_t dnr_set_tcount = 64;
 
 /*! \brief Printf-like formatting string for first cell rendering */
 const char * dnr_set_ffcell = NULL;
-
 /*! \brief Printf-like formatting string for middle cells rendering */
 const char * dnr_set_fmcell = "%8.2f ";
-
 /*! \brief Printf-like formatting string for last cell rendering */
 const char * dnr_set_flcell = NULL;
 

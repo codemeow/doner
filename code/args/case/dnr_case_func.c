@@ -24,6 +24,7 @@
 
 #include "../../args/case/dnr_case_func.h"
 #include "../../args/dnr_args_vars.h"
+#include "../../args/dnr_args_opts.h"
 #include "../../mode/data/dnr_mode_data.h"
 #include "../../easy/data/dnr_easy_data.h"
 #include "../../graph/data/dnr_mmod_data.h"
@@ -93,20 +94,23 @@ static void _args_func_kshift(void) {
  * \param[in] c Args-character */
 void dnr_args_func(int c) {
     switch (c) {
-        case 'e': _args_func_easy();
-                  break;
-        case 'x': _args_func_xmod();
-                  break;
-        case 'y': _args_func_ymod();
-                  break;
-        case 't': _args_func_otop();
-                  break;
-        case 'b': _args_func_obottom();
-                  break;
-        case 'K': _args_func_kmult();
-                  break;
-        case 'S': _args_func_kshift();
-                  break;
+        case DNR_OPTC_EASY: _args_func_easy();
+                            break;
+
+        case DNR_OPTC_XMOD: _args_func_xmod();
+                            break;
+        case DNR_OPTC_YMOD: _args_func_ymod();
+                            break;
+
+        case DNR_OPTC_OTOP: _args_func_otop();
+                            break;
+        case DNR_OPTC_OBOT: _args_func_obottom();
+                            break;
+
+        case DNR_OPTC_RMUL: _args_func_kmult();
+                            break;
+        case DNR_OPTC_RADD: _args_func_kshift();
+                            break;
     }
 }
 

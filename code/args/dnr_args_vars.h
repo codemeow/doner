@@ -47,22 +47,18 @@ extern double dnr_set_obottom;
 
 /*! \brief Cell value multiplier */
 extern double dnr_set_kmult;
-
 /*! \brief Cell value shifter */
 extern double dnr_set_kshift;
 
 /*! \brief Number of elements in one line */
 extern size_t dnr_set_twidth;
-
 /*! \brief Number of elements in the table */
 extern size_t dnr_set_tcount;
 
 /*! \brief Printf-like formatting string for first cell rendering */
 extern const char * dnr_set_ffcell;
-
 /*! \brief Printf-like formatting string for middle cells rendering */
 extern const char * dnr_set_fmcell;
-
 /*! \brief Printf-like formatting string for last cell rendering */
 extern const char * dnr_set_flcell;
 

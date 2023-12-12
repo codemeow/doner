@@ -24,6 +24,7 @@
 
 #include "../../args/case/dnr_case_table.h"
 #include "../../args/dnr_args_vars.h"
+#include "../../args/dnr_args_opts.h"
 #include "../../mode/data/dnr_mode_data.h"
 #include "../../util/dnr_util_help.h"
 #include "../../util/dnr_util_conv.h"
@@ -73,15 +74,16 @@ static void _args_table_tcount(void) {
  * \param[in] c Args-character */
 void dnr_args_table(int c) {
     switch (c) {
-        case 'w' : _args_table_twidth();
-                   break;
-        case 'f' : _args_table_ffcell();
-                   break;
-        case 'c' : _args_table_fmcell();
-                   break;
-        case 'l' : _args_table_flcell();
-                   break;
-        case 'n' : _args_table_tcount();
-                   break;
+        case DNR_OPTC_TWDT : _args_table_twidth();
+                             break;
+        case DNR_OPTC_TCNT : _args_table_tcount();
+                             break;
+
+        case DNR_OPTC_FCLL : _args_table_ffcell();
+                             break;
+        case DNR_OPTC_MCLL : _args_table_fmcell();
+                             break;
+        case DNR_OPTC_LCLL : _args_table_flcell();
+                             break;
     }
 }

@@ -29,7 +29,6 @@
 #include "args/dnr_args_process.h"
 #include "mode/dnr_mode_run.h"
 
-/*! \todo args values as 's' "S" to separate defines */
 /*! \todo print help */
 /*! \todo mmod remove from graph */
 
