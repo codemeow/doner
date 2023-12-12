@@ -32,14 +32,6 @@ void dnr_table_print(void) {
     for (size_t x = 0; x < dnr_set_tcount; x++) {
         double fy = dnr_util_plot(dnr_set_tcount, (double)x);
 
-        const double wide = dnr_set_otop - dnr_set_obottom;
-        if (fy >= dnr_set_otop) {
-            fy = fmod(fy, wide) + dnr_set_obottom;
-        }
-        if (fy <= dnr_set_obottom) {
-            fy = dnr_set_otop + fmod(fy, wide);
-        }
-
         if (x % dnr_set_twidth == 0) {
             if (dnr_set_ffcell)
                  dnr_nmod_data[dnr_set_fnmod].func(dnr_set_ffcell, fy);

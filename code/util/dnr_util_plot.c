@@ -19,6 +19,8 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <math.h>
+
 #include "../util/dnr_util_plot.h"
 #include "../args/dnr_args_vars.h"
 
@@ -39,6 +41,16 @@ double dnr_util_plot(size_t width, double x) {
 
     fy *= dnr_set_kmult;
     fy += dnr_set_kshift;
+
+    const double wide = dnr_set_otop - dnr_set_obottom;
+
+    if (fy > dnr_set_otop) {
+        fy = fmod(fy - dnr_set_obottom, wide) + dnr_set_obottom;
+    }
+
+    if (fy < dnr_set_obottom) {
+        fy = fmod(fy - dnr_set_obottom, wide) + dnr_set_otop;
+    }
 
     return fy;
 }

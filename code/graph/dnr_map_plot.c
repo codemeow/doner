@@ -60,14 +60,6 @@ static double * _map_plot(
     for (size_t x = 0; x < *width; x++) {
         yvalues[x] = dnr_util_plot(*width, (double)x);
 
-        const double wide = dnr_set_otop - dnr_set_obottom;
-        if (yvalues[x] >= dnr_set_otop) {
-            yvalues[x] = fmod(yvalues[x], wide) + dnr_set_obottom;
-        }
-        if (yvalues[x] <= dnr_set_obottom) {
-            yvalues[x] = dnr_set_otop + fmod(yvalues[x], wide);
-        }
-
         if (map->max < yvalues[x])
             map->max = yvalues[x];
         if (map->min > yvalues[x])
