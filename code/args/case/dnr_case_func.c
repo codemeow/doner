@@ -27,7 +27,7 @@
 #include "../../args/dnr_args_opts.h"
 #include "../../mode/data/dnr_mode_data.h"
 #include "../../easy/data/dnr_easy_data.h"
-#include "../../graph/data/dnr_mmod_data.h"
+#include "../../mmod/data/dnr_mmod_data.h"
 #include "../../util/dnr_util_help.h"
 #include "../../util/dnr_util_conv.h"
 

@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include "../../mode/func/dnr_mode_graph.h"
 #include "../../util/dnr_util_term.h"
-#include "../../graph/dnr_map_alloc.h"
+#include "../../graph/dnr_map_type.h"
 #include "../../graph/dnr_map_show.h"
 #include "../../graph/dnr_map_plot.h"
 #include "../../graph/dnr_map_info.h"

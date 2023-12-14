@@ -24,7 +24,7 @@
 #include "../util/dnr_util_plot.h"
 #include "../args/dnr_args_vars.h"
 
-#include "../graph/data/dnr_mmod_data.h"
+#include "../mmod/data/dnr_mmod_data.h"
 #include "../easy/data/dnr_easy_data.h"
 
 /*! \brief Plots the point of the currently selected function according to the

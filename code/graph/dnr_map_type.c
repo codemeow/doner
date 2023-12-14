@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../graph/dnr_map_alloc.h"
+#include "../graph/dnr_map_type.h"
 
 /*! \brief Creates new bitmap
  * \param[in] width Width of bitmap

@@ -24,8 +24,6 @@
 
 #include <stddef.h>
 
-///@todo Pack the data
-
 /*! \brief Graphical bitmap type */
 struct dnr_map_type {
     size_t width;           /*!< Bitmap width   */
@@ -34,5 +32,15 @@ struct dnr_map_type {
     double max;             /*!< Graph maximum  */
     unsigned char * data;   /*!< Bitmap data    */
 };
+
+/*! \brief Creates new bitmap
+ * \param[in] width Width of bitmap
+ * \param[in] height Height of bitmap
+ * \return Allocated bitmap */
+struct dnr_map_type * dnr_map_alloc(size_t width, size_t height);
+
+/*! \brief Frees provided bitmap
+ * \param[in] map Provided bitmap */
+void dnr_map_free(struct dnr_map_type * map);
 
 #endif

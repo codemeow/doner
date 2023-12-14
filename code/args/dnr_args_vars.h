@@ -26,7 +26,7 @@
 
 #include "../mode/list/dnr_mode_list.h"
 #include "../easy/list/dnr_easy_list.h"
-#include "../graph/list/dnr_mmod_list.h"
+#include "../mmod/list/dnr_mmod_list.h"
 #include "../table/list/dnr_nmod_list.h"
 
 /*! \brief Selected work mode */

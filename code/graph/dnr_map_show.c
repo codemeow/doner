@@ -30,7 +30,7 @@
 /*! \brief Braille table characters */
 char dnr_brl_map[DNR_BRAILLE_COUNT][4];
 
-/*! \brief Initializes braille table */
+/*! \brief Initializes Braille table */
 static void _brl_init(void) {
     for (size_t i = 0; i < DNR_SIZE(dnr_brl_map); i++) {
         dnr_brl_map[i][0] = 0xe2;

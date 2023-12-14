@@ -19,9 +19,20 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../graph/func/dnr_mmod_orig.h"
+#ifndef DNR_MMOD_LIST_H
+#define DNR_MMOD_LIST_H
 
-/*! \brief Uses the original X value */
-double dnr_mmod_orig(double x) {
-    return x;
-}
+#include "../../mmod/list/dnr_mmod_xlist.h"
+
+#define DNR_X(X, x) \
+    DNR_MMOD_ ## X,
+
+/*! \brief List of available graph mods */
+enum dnr_mmod_list {
+    DNR_MMOD_XLIST
+    DNR_MMOD_COUNT
+};
+
+#undef DNR_X
+
+#endif

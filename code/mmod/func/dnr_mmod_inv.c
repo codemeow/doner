@@ -19,20 +19,9 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DNR_MMOD_LIST_H
-#define DNR_MMOD_LIST_H
+#include "../../mmod/func/dnr_mmod_inv.h"
 
-#include "../../graph/list/dnr_mmod_xlist.h"
-
-#define DNR_X(X, x) \
-    DNR_MMOD_ ## X,
-
-/*! \brief List of available graph mods */
-enum dnr_mmod_list {
-    DNR_MMOD_XLIST
-    DNR_MMOD_COUNT
-};
-
-#undef DNR_X
-
-#endif
+/*! \brief Uses the inverted X value */
+double dnr_mmod_inv(double x) {
+    return 1.0 - x;
+}

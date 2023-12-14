@@ -22,7 +22,7 @@
 #ifndef DNR_MMOD_DATA_H
 #define DNR_MMOD_DATA_H
 
-#include "../../graph/list/dnr_mmod_list.h"
+#include "../../mmod/list/dnr_mmod_list.h"
 
 /*! \brief Map mod function template
  * \param[in] X input value in the range of [0..1]

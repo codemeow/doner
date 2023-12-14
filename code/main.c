@@ -30,7 +30,7 @@
 #include "mode/dnr_mode_run.h"
 
 /*! \todo print help */
-/*! \todo mmod remove from graph */
+///@todo Pack the data
 
 /*! \brief Entry point
  * \param[in] argc Number of arguments
