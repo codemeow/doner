@@ -20,6 +20,25 @@
  */
 
 #include "../graph/dnr_map_pixel.h"
+#include "../graph/dnr_map_util.h"
+
+/*! \brief Calculates the byte to pick for these coordinates
+ * \param[in] map Provided bitmap
+ * \param[in] x X position
+ * \param[in] y Y position
+ * \return Byte, where these coordinates are coded by */
+static size_t _calc_byte(struct dnr_map_type * map, ssize_t x, ssize_t y) {
+    return (x + y * map->width) / (dnr_braille_width * dnr_braille_height);
+}
+
+/*! \brief Calculates the bit to pick for these coordinates
+ * \param[in] map Provided bitmap
+ * \param[in] x X position
+ * \param[in] y Y position
+ * \return Bit, where these coordinates are coded by */
+static size_t _calc_bit(struct dnr_map_type * map, ssize_t x, ssize_t y) {
+    return (x + y * map->width) % (dnr_braille_width * dnr_braille_height);
+}
 
 /*! \brief Sets the selected pixel value for bitmap
  * \param[in] map Provided bitmap
@@ -35,7 +54,12 @@ void dnr_map_set(
     if (x < 0 || y < 0 || (size_t)x >= map->width || (size_t)y >= map->height)
         return;
 
-    map->data[y * map->width + x] = value;
+    size_t Bi = _calc_byte(map, x, y);
+    size_t bi = _calc_bit (map, x, y);
+
+    if (value) 
+         map->data[Bi] |=  (1 << bi);
+    else map->data[Bi] &= ~(1 << bi);
 }
 
 /*! \brief Get the selected pixel value for bitmap
@@ -51,5 +75,8 @@ unsigned char dnr_map_get(
     if (x < 0 || y < 0 || (size_t)x >= map->width || (size_t)y >= map->height)
         return 0;
 
-    return map->data[y * map->width + x];
+    size_t Bi = _calc_byte(map, x, y);
+    size_t bi = _calc_bit (map, x, y);
+
+    return 1 & (map->data[Bi] >> bi);
 }

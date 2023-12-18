@@ -24,6 +24,8 @@
 #include "../util/dnr_util_size.h"
 #include "../graph/dnr_map_pixel.h"
 #include "../graph/dnr_map_util.h"
+#include "../easy/data/dnr_easy_data.h"
+#include "../args/dnr_args_vars.h"
 
 #define DNR_BRAILLE_COUNT (256)
 
@@ -62,13 +64,31 @@ static unsigned char _brl_char(struct dnr_map_type * map, size_t x, size_t y) {
            dnr_map_get(map, x + 1, y + 3) << 7;
 }
 
-/*! \brief Draws provided map as Braille dots
- * \param[in] map */
-void dnr_map_show(struct dnr_map_type * map) {
+/*! \brief Shows map's info
+ * \param[in] map Bitmap */
+static void _map_info(struct dnr_map_type * map) {
+    printf("Easing:\n");
+    printf("    %s\n", dnr_easy_data[dnr_set_easy].name);
+    printf("Graph :\n");
+    printf("    Min: %8.3f\n", map->min);
+    printf("    Max: %8.3f\n", map->max);
+    printf("\n");
+}
+
+/*! \brief Prints map's data
+ * \param[in] map Bitmap */
+static void _map_show(struct dnr_map_type * map) {
     for (size_t y = 0; y < map->height; y += dnr_braille_height) {
         for (size_t x = 0; x < map->width; x += dnr_braille_width) {
             printf("%s", dnr_brl_map[_brl_char(map, x, y)]);
         }
         printf("\n");
     }
+}
+
+/*! \brief Draws provided map as Braille dots
+ * \param[in] map */
+void dnr_map_show(struct dnr_map_type * map) {
+    _map_info(map);
+    _map_show(map);
 }

@@ -25,7 +25,6 @@
 #include "../../graph/dnr_map_type.h"
 #include "../../graph/dnr_map_show.h"
 #include "../../graph/dnr_map_plot.h"
-#include "../../graph/dnr_map_info.h"
 #include "../../graph/dnr_map_util.h"
 
 
@@ -42,7 +41,6 @@ void dnr_mode_graph(void) {
     );
 
     dnr_map_plot(map);
-    dnr_map_info(map);
     dnr_map_show(map);
     dnr_map_free(map);
 }

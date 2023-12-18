@@ -23,13 +23,16 @@
 #include <stdio.h>
 #include <string.h>
 #include "../graph/dnr_map_type.h"
+#include "../graph/dnr_map_util.h"
 
 /*! \brief Creates new bitmap
  * \param[in] width Width of bitmap
  * \param[in] height Height of bitmap
  * \return Allocated bitmap */
 struct dnr_map_type * dnr_map_alloc(size_t width, size_t height) {
-    const size_t size = width * height;
+    const size_t size = 
+        (width * height) / 
+        (dnr_braille_width * dnr_braille_height);
 
     struct dnr_map_type * map = malloc(sizeof(*map));
     if (!map) {
