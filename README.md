@@ -274,5 +274,9 @@ By default the table is produced for 64 values with the loop where input X value
 ## Running on windows
 Unfortunately by default windows `cmd` and `powershell` does not support Braille unicode block. So, the only options are:
 1. Install or set the font that do support it (for ex. "MS Gothic", but it has some issues with usual characters).
+![inelastic](readme/windows-cmd.png)
 2. Use "Windows terminal" application (from [here](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-us&gl=US) or [here](https://github.com/microsoft/terminal))
+![inelastic](readme/windows-terminal.png)
 3. Does not use the `graph` mode. The `table` mode works fine in any terminal
+![inelastic](readme/windows-table.png)
+
