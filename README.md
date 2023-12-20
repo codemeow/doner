@@ -277,6 +277,6 @@ Unfortunately by default windows `cmd` and `powershell` does not support Braille
 ![inelastic](readme/windows-cmd.png)
 2. Use "Windows terminal" application (from [here](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-us&gl=US) or [here](https://github.com/microsoft/terminal))
 ![inelastic](readme/windows-terminal.png)
-3. Does not use the `graph` mode. The `table` mode works fine in any terminal
+3. Do not use the `graph` mode. The `table` mode works fine in any terminal
 ![inelastic](readme/windows-table.png)
 
