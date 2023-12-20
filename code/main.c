@@ -29,8 +29,6 @@
 #include "args/dnr_args_process.h"
 #include "mode/dnr_mode_run.h"
 
-/*! \todo print help */
-
 /*! \brief Entry point
  * \param[in] argc Number of arguments
  * \param[in] argv List of arguments
