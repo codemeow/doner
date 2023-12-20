@@ -22,8 +22,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include "../graph/dnr_map_type.h"
 #include "../graph/dnr_map_util.h"
+#include "../util/dnr_util_platform.h"
+
 
 /*! \brief Creates new bitmap
  * \param[in] width Width of bitmap
@@ -36,7 +39,7 @@ struct dnr_map_type * dnr_map_alloc(size_t width, size_t height) {
 
     struct dnr_map_type * map = malloc(sizeof(*map));
     if (!map) {
-        fprintf(stderr, "Allocation error: %zu bytes\n", sizeof(*map));
+        fprintf(stderr, "Allocation error: %" PRIuz " bytes\n", sizeof(*map));
         exit(EXIT_FAILURE);
     }
 
@@ -46,7 +49,7 @@ struct dnr_map_type * dnr_map_alloc(size_t width, size_t height) {
     map->min    = 0.0;
     map->data   = malloc(size);
     if (!map->data) {
-        fprintf(stderr, "Allocation error: %zu bytes\n", size);
+        fprintf(stderr, "Allocation error: %" PRIuz " bytes\n", size);
         exit(EXIT_FAILURE);
     }
     
