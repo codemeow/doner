@@ -2,6 +2,8 @@
 # DONER
 Easing tables generator
 
+![inelastic](readme/output.gif)
+
 ## HOW TO USE
 
 ### Help
