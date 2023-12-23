@@ -58,7 +58,7 @@ static double * _map_plot(
     double * yvalues = malloc(*width * sizeof(double));
 
     for (size_t x = 0; x < *width; x++) {
-        yvalues[x] = dnr_util_plot(*width, (double)x);
+        yvalues[x] = dnr_util_plot(*width, (double)x, false);
 
         if (map->max < yvalues[x])
             map->max = yvalues[x];

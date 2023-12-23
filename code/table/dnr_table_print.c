@@ -19,25 +19,25 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
 #include <stdint.h>
 #include <math.h>
 #include "../table/dnr_table_print.h"
 #include "../table/data/dnr_nmod_data.h"
 #include "../args/dnr_args_vars.h"
 #include "../util/dnr_util_plot.h"
+#include "../util/dnr_util_print.h"
 
 /*! \brief Prints the table values */
 void dnr_table_print(void) {
     for (size_t x = 0; x < dnr_set_tcount; x++) {
-        double fy = dnr_util_plot(dnr_set_tcount, (double)x);
+        double fy = dnr_util_plot(dnr_set_tcount, (double)x, dnr_set_diff);
 
         if (x % dnr_set_twidth == 0) {
             if (dnr_set_ffcell)
                  dnr_nmod_data[dnr_set_fnmod].func(dnr_set_ffcell, fy);
             else dnr_nmod_data[dnr_set_mnmod].func(dnr_set_fmcell, fy);
 
-        } if (x % dnr_set_twidth == dnr_set_twidth - 1) {
+        } else if (x % dnr_set_twidth == dnr_set_twidth - 1) {
             if (dnr_set_flcell)
                  dnr_nmod_data[dnr_set_lnmod].func(dnr_set_flcell, fy);
             else dnr_nmod_data[dnr_set_mnmod].func(dnr_set_fmcell, fy);
@@ -47,7 +47,7 @@ void dnr_table_print(void) {
         }
 
         if (x % dnr_set_twidth == dnr_set_twidth - 1)
-            printf("\n");
+            dnr_util_print("\n");
     }
-    printf("\n");
+    dnr_util_print("\n");
 }

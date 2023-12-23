@@ -19,13 +19,13 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
 #include "../graph/dnr_map_show.h"
 #include "../util/dnr_util_size.h"
 #include "../graph/dnr_map_pixel.h"
 #include "../graph/dnr_map_util.h"
 #include "../easy/data/dnr_easy_data.h"
 #include "../args/dnr_args_vars.h"
+#include "../util/dnr_util_print.h"
 
 #define DNR_BRAILLE_COUNT (256)
 
@@ -67,12 +67,12 @@ static unsigned char _brl_char(struct dnr_map_type * map, size_t x, size_t y) {
 /*! \brief Shows map's info
  * \param[in] map Bitmap */
 static void _map_info(struct dnr_map_type * map) {
-    printf("Easing:\n");
-    printf("    %s\n", dnr_easy_data[dnr_set_easy].name);
-    printf("Graph :\n");
-    printf("    Min: %8.3f\n", map->min);
-    printf("    Max: %8.3f\n", map->max);
-    printf("\n");
+    dnr_util_print("Easing:\n");
+    dnr_util_print("    %s\n", dnr_easy_data[dnr_set_easy].name);
+    dnr_util_print("Graph :\n");
+    dnr_util_print("    Min: %8.3f\n", map->min);
+    dnr_util_print("    Max: %8.3f\n", map->max);
+    dnr_util_print("\n");
 }
 
 /*! \brief Prints map's data
@@ -80,9 +80,9 @@ static void _map_info(struct dnr_map_type * map) {
 static void _map_show(struct dnr_map_type * map) {
     for (size_t y = 0; y < map->height; y += dnr_braille_height) {
         for (size_t x = 0; x < map->width; x += dnr_braille_width) {
-            printf("%s", dnr_brl_map[_brl_char(map, x, y)]);
+            dnr_util_print("%s", dnr_brl_map[_brl_char(map, x, y)]);
         }
-        printf("\n");
+        dnr_util_print("\n");
     }
 }
 

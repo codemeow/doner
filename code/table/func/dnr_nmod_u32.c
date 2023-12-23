@@ -19,15 +19,15 @@
  *  along with Project "Doner". If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
 #include <stdint.h>
 #include <math.h>
 
 #include "../../table/func/dnr_nmod_u32.h"
+#include "../../util/dnr_util_print.h"
 
 /*! \brief Prints the value of the function point with the selected formatter
  * \param[in] fmt Formatter, set for the appropriate type
  * \param[in] fy Function value in this point */
 void dnr_nmod_u32(const char * fmt, double fy) {
-    printf(fmt, (uint32_t)round(fy));
+    dnr_util_print(fmt, (uint32_t)round(fy));
 }

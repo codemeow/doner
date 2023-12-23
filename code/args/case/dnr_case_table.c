@@ -70,6 +70,11 @@ static void _args_table_tcount(void) {
     }
 }
 
+/*! \brief Processes difference flag */
+static void _args_table_diff(void) {
+    dnr_set_diff = true;
+}
+
 /*! \brief Processes arguments meant for table-related things
  * \param[in] c Args-character */
 void dnr_args_table(int c) {
@@ -84,6 +89,8 @@ void dnr_args_table(int c) {
         case DNR_OPTC_MCLL : _args_table_fmcell();
                              break;
         case DNR_OPTC_LCLL : _args_table_flcell();
+                             break;
+        case DNR_OPTC_TDFF : _args_table_diff();
                              break;
     }
 }

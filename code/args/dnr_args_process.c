@@ -55,6 +55,7 @@ void dnr_args_process(int argc, char * argv[]) {
         { DNR_OPTL_LCLL, required_argument,  NULL, DNR_OPTC_LCLL },
         { DNR_OPTL_TWDT, required_argument,  NULL, DNR_OPTC_TWDT },
         { DNR_OPTL_TCNT, required_argument,  NULL, DNR_OPTC_TCNT },
+        { DNR_OPTL_TDFF, no_argument,        NULL, DNR_OPTC_TDFF },
 
         { NULL, 0, NULL, 0 }
     };
@@ -78,6 +79,7 @@ void dnr_args_process(int argc, char * argv[]) {
         DNR_OPTS_LCLL DNR_OPT_REQUIRED
         DNR_OPTS_TWDT DNR_OPT_REQUIRED
         DNR_OPTS_TCNT DNR_OPT_REQUIRED
+        DNR_OPTS_TDFF
     ;
 
     while (1) {
@@ -103,7 +105,8 @@ void dnr_args_process(int argc, char * argv[]) {
             case DNR_OPTC_MCLL :
             case DNR_OPTC_LCLL :
             case DNR_OPTC_TWDT :
-            case DNR_OPTC_TCNT : dnr_args_table(c);
+            case DNR_OPTC_TCNT :
+            case DNR_OPTC_TDFF : dnr_args_table(c);
                                  break;
 
             case -1 :
