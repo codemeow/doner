@@ -306,7 +306,7 @@ Top and bottom limits could be also applied here
     0.16     0.19     0.21     0.22
 ```
 ```
-       doner -m table -e insine -f \"   .byte $%02x, \" -c \"$%02x, \" -l \"$%02x\" -w 4 -s 16 -k 40 -t 255 -b 0
+       doner -m table -e insine -f "   .byte $%02x, " -c "$%02x, " -l "$%02x" -w 4 -s 16 -k 40 -t 255 -b 0
 
     .byte $00, $00, $01, $02
     .byte $03, $05, $08, $0a
@@ -314,7 +314,7 @@ Top and bottom limits could be also applied here
     .byte $1c, $20, $24, $28
 ```
 ```
-       doner -d -m table -e insine -f \"   .byte $%02x, \" -c \"$%02x, \" -l \"$%02x\" -w 4 -s 16 -k 40 -t 255 -b 0
+       doner -d -m table -e insine -f "   .byte $%02x, " -c "$%02x, " -l "$%02x" -w 4 -s 16 -k 40 -t 255 -b 0
 
     .byte $00, $00, $01, $01
     .byte $02, $02, $02, $03
