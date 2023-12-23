@@ -123,7 +123,7 @@ As the screen width is limited by 255 only one byte is provided to store the pla
         doner -m graph -e inelastic
 ![inelastic](readme/07.png)
 
-    Let's multiplicate the final values by 40 to make it produce values [0..40]:
+Let's multiplicate the final values by 40 to make it produce values [0..40]:
 
         doner -m graph -e inelastic -k 40
 ![inelastic](readme/08.png)
@@ -133,8 +133,7 @@ As could be seen there are negative values that will prevent the correct convert
         doner -m graph -e inelastic -k 40 -b 0 -t 255
 ![inelastic](readme/09.png)
 
-Thus making generated values correctly overflow when summing with some
-    starting position:
+Thus making generated values correctly overflow when summing with some starting position:
 
         lda table, x ; Load value 250
         clc
@@ -273,6 +272,69 @@ By default the table is produced for 64 values with the loop where input X value
 0.453052, 0.453052, 0.524053, 0.598305, 0.675301, 0.754515, 0.835405, 
 0.917421, 0.917421, 1.000000,
 ```
+
+###Difference
+
+Sometimes it is faster to operate with previous value of the cell instead of keeping the original value. In this case this flag could be set to write only difference between previous and current cell.
+
+In other words:
+```
+Original:   [0, 5, 6, 8, 4]
+Difference: [0, (5-0), (6-5), (8-6), (4-8)], thus
+            [0, 5, 1, 2, -4]
+```
+
+Mathematically speaking this values are derivative of the function (rate of change of this function). This flag does not affect the `graph` mode.
+
+Top and bottom limits could be also applied here
+
+
+    `-d` or `--difference`
+
+    Ex.:
+
+```
+       doner -m table -e insine -w 4 -s 8
+
+    0.00     0.03     0.10     0.22
+    0.38     0.57     0.78     1.00
+```
+```
+        doner -m table -e insine -d -w 4 -s 8
+
+    0.00     0.03     0.07     0.12
+    0.16     0.19     0.21     0.22
+```
+```
+       doner -m table -e insine -f \"   .byte $%02x, \" -c \"$%02x, \" -l \"$%02x\" -w 4 -s 16 -k 40 -t 255 -b 0
+
+    .byte $00, $00, $01, $02
+    .byte $03, $05, $08, $0a
+    .byte $0d, $10, $14, $18
+    .byte $1c, $20, $24, $28
+```
+```
+       doner -d -m table -e insine -f \"   .byte $%02x, \" -c \"$%02x, \" -l \"$%02x\" -w 4 -s 16 -k 40 -t 255 -b 0
+
+    .byte $00, $00, $01, $01
+    .byte $02, $02, $02, $03
+    .byte $03, $03, $04, $04
+    .byte $04, $04, $04, $04
+```
+
+**Note:**
+Be advised, that in this mode the final point of the object could differ from the last value of the non-diff mode! That happens because of the cumulative rounding error. This cannot be solved easily in the code, as some side effects will present:
+
+* If to remove the `round` call - the 39.999 values will become 39 instead of 40. Thus making final point wrong again
+* If to calc diff between printed values (not the original ones) then the ever-growing function will sometime produce decreasing values. Like in the example above:
+
+```
+00,  00,  01,  02,  03,  05,  08,  10  F(x)
+   0    1    1    1    2    3    2     F(x)'
+      1    0    0    1    1   -1       F(x)"
+```
+So it is recommended to check the final point and correct some values manually (changing the 6th value in this case from 3 to 2 for ex.)
+
 ## Running on windows
 Unfortunately by default windows `cmd` and `powershell` does not support Braille unicode block. So, the only options are:
 1. Install or set the font that do support it (for ex. "MS Gothic", but it has some issues with usual characters).

@@ -23,12 +23,14 @@
 #define DNR_UTIL_PLOT_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 /*! \brief Plots the point of the currently selected function according to the
  * provided plot width and x point
  * \param[in] width Plot width (how many points there should be between [0, 1])
  * \param[in] x Current position
+ * \param[in] diff Derivative flag
  * \return Calculated final value of F(x) */
-double dnr_util_plot(size_t width, double x);
+double dnr_util_plot(size_t width, double x, bool diff);
 
 #endif

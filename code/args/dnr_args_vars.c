@@ -60,3 +60,6 @@ enum dnr_nmod_list dnr_set_mnmod = DNR_NMOD_F64;
 /* !\ brief Cell type, according to format for the last cell */
 enum dnr_nmod_list dnr_set_lnmod = DNR_NMOD_F64;
 
+/*! \brief Difference between cells */
+bool dnr_set_diff = false;
+

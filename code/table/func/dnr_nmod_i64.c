@@ -24,10 +24,11 @@
 #include <math.h>
 
 #include "../../table/func/dnr_nmod_i64.h"
+#include "../../util/dnr_util_print.h"
 
 /*! \brief Prints the value of the function point with the selected formatter
  * \param[in] fmt Formatter, set for the appropriate type
  * \param[in] fy Function value in this point */
 void dnr_nmod_i64(const char * fmt, double fy) {
-    printf(fmt, (int64_t)round(fy));
+    dnr_util_print(fmt, (int64_t)round(fy));
 }

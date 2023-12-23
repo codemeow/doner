@@ -23,6 +23,7 @@
 #define DNR_ARGS_VARS_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "../mode/list/dnr_mode_list.h"
 #include "../easy/list/dnr_easy_list.h"
@@ -68,5 +69,8 @@ extern enum dnr_nmod_list dnr_set_fnmod;
 extern enum dnr_nmod_list dnr_set_mnmod;
 /* !\ brief Cell type, according to format for the last cell */
 extern enum dnr_nmod_list dnr_set_lnmod;
+
+/*! \brief Difference between cells */
+extern bool dnr_set_diff;
 
 #endif

@@ -127,4 +127,14 @@
 /*! \brief Char option for table's number of elements */
 #define DNR_OPTC_TCNT 's'
 
+/*! \brief Long option for flag writing only difference between steps 
+ * instead of direct value
+ *
+ * Ex.: [0, 5, 18, 14] will be [0, 5, 13, -4] */
+#define DNR_OPTL_TDFF "difference"
+/*! \brief Short option for difference */
+#define DNR_OPTS_TDFF "d"
+/*! \brief Char option for difference */
+#define DNR_OPTC_TDFF 'd'
+
 #endif
