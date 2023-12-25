@@ -273,7 +273,7 @@ By default the table is produced for 64 values with the loop where input X value
 0.917421, 0.917421, 1.000000,
 ```
 
-###Difference
+### Difference
 
 Sometimes it is faster to operate with previous value of the cell instead of keeping the original value. In this case this flag could be set to write only difference between previous and current cell.
 
