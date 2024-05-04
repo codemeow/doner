@@ -127,14 +127,26 @@
 /*! \brief Char option for table's number of elements */
 #define DNR_OPTC_TCNT 's'
 
-/*! \brief Long option for flag writing only difference between steps 
- * instead of direct value
+/*! \brief Long option for "difference" mode.
+ * In this mode:
+ * - No actual values will be printed
+ * - Instead the difference between values is shown
  *
- * Ex.: [0, 5, 18, 14] will be [0, 5, 13, -4] */
+ * This mode is useful for the cases when one wants to move the object
+ * relatively and not by the absolute positioning. For instance when
+ * there is two objects on different starting positions but the movement
+ * should be the same.
+ * Ex.L [0, 5, 18, 14] will convert into [0, 5, 13, -4] 
+ *
+ * The main principce of the calculation of this mode is
+ * ~~~
+ * round(A[n]) - round(A[n-1])
+ * ~~~
+ * 'thanks to https://github.com/truebluepl user */
 #define DNR_OPTL_TDFF "difference"
-/*! \brief Short option for difference */
+/*! \brief Short option for diff mode */
 #define DNR_OPTS_TDFF "d"
-/*! \brief Char option for difference */
+/*! \brief Char option for diff mode */
 #define DNR_OPTC_TDFF 'd'
 
 #endif

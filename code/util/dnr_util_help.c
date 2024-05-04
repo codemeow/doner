@@ -27,6 +27,7 @@
 #include "../util/dnr_util_print.h"
 
 static const char * dnr_help_string[] = {
+    "\n"
     "DONER - Easing tables generator\n", 
     "HOW TO USE\n", 
     "\n", 
@@ -565,22 +566,6 @@ static const char * dnr_help_string[] = {
     "    .byte $03, $03, $04, $04\n",
     "    .byte $04, $04, $04, $04\n",
     "\n",
-    "   Note:\n",
-    "       Be advised, that in this mode the final point of the object could\n",
-    "       differ from the last value of the non-diff mode! That happens\n",
-    "       because of the cumulative rounding error. This cannot be solved\n",
-    "       easily in the code, as some side effects will present:\n",
-    "       * If to remove the `round` call - the 39.999 values will become 39\n",
-    "           instead of 40. Thus making final point wrong again\n",
-    "       * If to calc diff between printed values (not the original ones)\n",
-    "           then the ever-growing function will sometime produce decreasing\n",
-    "           values. Like in the example above:\n",
-    "\n",
-    "       00, 00, 01, 02, 03, 05, 08, 10\n",
-    "          0   1   1   1   2   3   2\n",
-    "\n",
-    "       So it is recommended to check the final point and correct some values\n",
-    "       manually (changing the 5th value in this case from 2 to 1 for ex.)\n"
 };
 
 /*! \brief Print help and exit 

@@ -53,13 +53,9 @@ const char * dnr_set_fmcell = "%8.2f ";
 /*! \brief Printf-like formatting string for last cell rendering */
 const char * dnr_set_flcell = NULL;
 
-/* !\ brief Cell type, according to format for the first cell */
-enum dnr_nmod_list dnr_set_fnmod = DNR_NMOD_F64;
-/* !\ brief Cell type, according to format for middle cells */
-enum dnr_nmod_list dnr_set_mnmod = DNR_NMOD_F64;
-/* !\ brief Cell type, according to format for the last cell */
-enum dnr_nmod_list dnr_set_lnmod = DNR_NMOD_F64;
+/* !\ brief Cell type, according to format for cells */
+enum dnr_nmod_list dnr_set_mod = DNR_NMOD_DEFAULT;
 
 /*! \brief Difference between cells */
-bool dnr_set_diff = false;
+bool dnr_set_difference = false;
 

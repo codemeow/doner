@@ -30,20 +30,24 @@
 /*! \brief Prints the table values */
 void dnr_table_print(void) {
     for (size_t x = 0; x < dnr_set_tcount; x++) {
-        double fy = dnr_util_plot(dnr_set_tcount, (double)x, dnr_set_diff);
+        double fy = dnr_util_plot(
+            dnr_set_tcount, 
+            (double)x, 
+            dnr_set_difference
+        );
 
         if (x % dnr_set_twidth == 0) {
             if (dnr_set_ffcell)
-                 dnr_nmod_data[dnr_set_fnmod].func(dnr_set_ffcell, fy);
-            else dnr_nmod_data[dnr_set_mnmod].func(dnr_set_fmcell, fy);
+                 dnr_nmod_data[dnr_set_mod].func(dnr_set_ffcell, fy);
+            else dnr_nmod_data[dnr_set_mod].func(dnr_set_fmcell, fy);
 
         } else if (x % dnr_set_twidth == dnr_set_twidth - 1) {
             if (dnr_set_flcell)
-                 dnr_nmod_data[dnr_set_lnmod].func(dnr_set_flcell, fy);
-            else dnr_nmod_data[dnr_set_mnmod].func(dnr_set_fmcell, fy);
+                 dnr_nmod_data[dnr_set_mod].func(dnr_set_flcell, fy);
+            else dnr_nmod_data[dnr_set_mod].func(dnr_set_fmcell, fy);
 
         } else {
-            dnr_nmod_data[dnr_set_mnmod].func(dnr_set_fmcell, fy);
+            dnr_nmod_data[dnr_set_mod].func(dnr_set_fmcell, fy);
         }
 
         if (x % dnr_set_twidth == dnr_set_twidth - 1)

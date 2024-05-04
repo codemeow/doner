@@ -30,6 +30,13 @@
 #include "../../util/dnr_util_conv.h"
 #include "../../util/dnr_util_fmt.h"
 
+/* !\ brief Cell type, according to format for the first cell */
+static enum dnr_nmod_list dnr_set_fnmod = DNR_NMOD_DEFAULT;
+/* !\ brief Cell type, according to format for middle cells */
+static enum dnr_nmod_list dnr_set_mnmod = DNR_NMOD_DEFAULT;
+/* !\ brief Cell type, according to format for the last cell */
+static enum dnr_nmod_list dnr_set_lnmod = DNR_NMOD_DEFAULT;
+
 /*! \brief Processes width of the table */
 static void _args_table_twidth(void) {
     if (!dnr_set_svalue(&dnr_set_twidth, optarg)) {
@@ -72,7 +79,18 @@ static void _args_table_tcount(void) {
 
 /*! \brief Processes difference flag */
 static void _args_table_diff(void) {
-    dnr_set_diff = true;
+    dnr_set_difference = true;
+}
+
+/*! \brief Checks the matching type of the format cells */
+static void _args_check_fmts(void) {
+    if (dnr_set_fnmod != dnr_set_mnmod ||
+        dnr_set_mnmod != dnr_set_lnmod) {
+        fprintf(stderr, "Printing types of all cells should match (%d %d %d)\n", dnr_set_fnmod, dnr_set_mnmod, dnr_set_lnmod);
+        dnr_util_help(EXIT_FAILURE);
+    }
+
+    dnr_set_mod = dnr_set_fnmod;
 }
 
 /*! \brief Processes arguments meant for table-related things
@@ -93,4 +111,9 @@ void dnr_args_table(int c) {
         case DNR_OPTC_TDFF : _args_table_diff();
                              break;
     }
+}
+
+/*! \brief Table arguments check */
+void dnr_args_checktable(void) {
+    _args_check_fmts();
 }
