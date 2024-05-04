@@ -26,4 +26,7 @@
  * \param[in] c Args-character */
 void dnr_args_table(int c);
 
+/*! \brief Table arguments check */
+void dnr_args_checktable(void);
+
 #endif

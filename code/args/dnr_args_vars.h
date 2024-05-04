@@ -63,14 +63,12 @@ extern const char * dnr_set_fmcell;
 /*! \brief Printf-like formatting string for last cell rendering */
 extern const char * dnr_set_flcell;
 
-/* !\ brief Cell type, according to format for the first cell */
-extern enum dnr_nmod_list dnr_set_fnmod;
-/* !\ brief Cell type, according to format for middle cells */
-extern enum dnr_nmod_list dnr_set_mnmod;
-/* !\ brief Cell type, according to format for the last cell */
-extern enum dnr_nmod_list dnr_set_lnmod;
+/*! \brief Default value for cell printing mode */
+#define DNR_NMOD_DEFAULT (DNR_NMOD_F64)
+/*! \brief Cell type, according to format for the first cell */
+extern enum dnr_nmod_list dnr_set_mod;
 
 /*! \brief Difference between cells */
-extern bool dnr_set_diff;
+extern bool dnr_set_difference;
 
 #endif

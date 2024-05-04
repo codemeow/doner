@@ -110,10 +110,10 @@ void dnr_args_process(int argc, char * argv[]) {
                                  break;
 
             case -1 :
+                dnr_args_checktable();
                 return;
 
             default :
-                fprintf(stderr, "Unknown option: %s\n", optarg);
                 dnr_util_help(EXIT_FAILURE);
         }
     }

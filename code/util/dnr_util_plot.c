@@ -58,7 +58,11 @@ double dnr_util_plot(size_t width, double x, bool diff) {
     if (diff) {
         double pprev = prev;
         prev = fy;
-        fy -= pprev;
+
+        /* The float values don't need rounding while the integer values do */
+        if (dnr_set_mod == DNR_NMOD_F64)
+             fy =       fy  -       pprev;
+        else fy = round(fy) - round(pprev);
     }
 
     return fy;
